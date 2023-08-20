@@ -14,7 +14,7 @@
 <p>La librería Request es un estándar que sirve para realizar solicitudes HTTP cuando se está desarrollando el lado del servidor de una página web.</p>
 
 <br/>
-<p>En este proyecto voy a usar estas tres librerías para localizar correctamente una población introducida por el usuario y el pais al que pertenece. Con la población localizada hago una petición a la web: 
+<p>En este proyecto voy a usar estas tres librerías para localizar correctamente una población introducida por el usuario y el país al que pertenece. Con la población localizada hago una petición a la web: 
 <br/> https://salidaypuestadelsol.com/sun <br/>
 Por último con Beautifoul Soup obtengo los datos de salida y puesta del sol de la web para mostrarlos. </p>
 
