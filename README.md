@@ -1,5 +1,5 @@
 <h1 align="center"> Información Local</h1>
-<p>En este programa utilizo las siguientes librerias de python: </p>
+<p>En este programa utilizo las siguientes librerías de python: </p>
 <ul>
     <li>GeoPy</li>
     <li>Beautiful Soup (bs4)</li>
