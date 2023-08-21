@@ -3,19 +3,30 @@ import bs4
 import requests
 
 
-
 def buscarCiudad(ciudad):
-    #
-    loc = Nominatim(user_agent="informacionLocal")
- 
-    # 
-    getLoc = loc.geocode(ciudad)
+    while True:
+        try:
+            loc = Nominatim(user_agent="informacionLocal")
+            getLoc = loc.geocode(ciudad)
+            
+            if getLoc is None:
+                ciudad = input('La localización buscada no se encuentra o no existe, indique algún dato más para una mejor búsqueda. ')
+                continue  
+            
+            datos = getLoc.raw
+            datosConcretos = datos['display_name']
+            listaDatos = datosConcretos.split(', ')
     
-    datos = getLoc.raw
-    datosConcretos = datos['display_name']
-    listaDatos = datosConcretos.split(', ')
-    print(listaDatos)
-    #print(f'La localización buscada es {listaDatos[0]}, de {listaDatos[1]}, con el código postal {listaDatos[-2]}, {listaDatos[-1]}?')
-    # return (f'La localización buscada es {listaDatos[0]}, de {listaDatos[1]}, con el código postal {listaDatos[-2]}, {listaDatos[-1]}?')
-    return listaDatos[0], listaDatos[-1]
+            respuesta = input(f'¿{listaDatos[0]} de {listaDatos[1]}, país {listaDatos[-1]} es la localización que busca? sí o no: ').lower()
+            
+            if respuesta == 'si' or respuesta == 'sí':
+                return listaDatos[0], listaDatos[-1]
+            elif respuesta == 'no':
+                ciudad = input('Escribe algún dato más de la localización para una mejor búsqueda: ')
+            else:
+                print('Sólo puede responder sí o no en este menú')
+        except Exception as e:
+            
+            ciudad = input("Ha ocurrido un error introduce nuevamente el nombre de la localización: ")
+
 
