@@ -1,5 +1,5 @@
 from geopy.geocoders import Nominatim
-import bs4
+from bs4 import BeautifulSoup
 import requests
 
 
@@ -30,3 +30,17 @@ def buscarCiudad(ciudad):
             ciudad = input("Ha ocurrido un error introduce nuevamente el nombre de la localización: ")
 
 
+def consultarWeb(poblacion, pais):
+    if (pais == 'España'):
+        pais = 'Spain'
+
+    URL = (f'https://salidaypuestadelsol.com/sun/{poblacion}_({pais})')
+
+    pedido_obtenido = requests.get(URL)
+    html_obt = pedido_obtenido.text
+
+    soup = BeautifulSoup(html_obt, 'html.parser')
+
+    divs = soup.find_all('div', class_ = 'today-list__item-value font-weight-bold')
+
+    return divs[0].text, divs[1].text
